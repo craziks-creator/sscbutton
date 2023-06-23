@@ -35,9 +35,11 @@ import subprocess
 
 def get_mod(client: Client):
     req_result = request_time(Client)
+    Tz = pytz.timezone("Asia/Calcutta") 
+    timeIndia = datetime.now(Tz)
     if req_result[0] == 404:
         mes2 = "[{}]: SSC Website has not been Updated.\nLast Notice - \n{}".format(
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"), req_result[1]
+            timeIndia.strftime("%Y-%m-%d %H:%M:%S"), req_result[1]
         )
         logging.info("[*] SSC Website has not been Updated.")
         with open("bot/plugins/check.txt", "w+") as f:
@@ -46,10 +48,10 @@ def get_mod(client: Client):
     elif req_result[0] == 403:
         sendtelegram(2, AUTH_CHANNEL, "_", "<code>Request Timed Out,ssc server down or too busy...</code>")
         mes2 = "[{}]: SSC Website has not been Updated.".format(
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+            timeIndia.strftime("%Y-%m-%d %H:%M:%S"))
     elif req_result[0] == 200:
         mes2 = "[{}]: SSC Website has not been Updated.\nLast Notice - \n{}".format(
-            datetime.now().strftime("%Y-%m-%d %H:%M:%S"), req_result[1]
+            timeIndia.strftime("%Y-%m-%d %H:%M:%S"), req_result[1]
         )
         t1 = threading.Thread(target=broadcast, args=(req_result,))
         t1.start()
@@ -168,10 +170,14 @@ def broadcast(req_result):
     total = len(broadcast_list)
     failed = 0
     failed_users = []
+    
+    Tz = pytz.timezone("Asia/Calcutta") 
+    timeIndia = datetime.now(Tz)
+    
     for i in range(0, (total)):
         try:
             pp = "[{}]:<b>Latest update from SSC </b><code>{}</code>\n{}".format(
-                datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                timeIndia.strftime("%Y-%m-%d %H:%M:%S"),
                 req_result[1],
                 req_result[2],
             )
