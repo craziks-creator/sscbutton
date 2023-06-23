@@ -157,7 +157,7 @@ def check_status(user_id, usname):
         "_",
         "Last Check- [{}]\n<b>Last Notice:</b> <code>{}</code>\n{}".format(
             timeIndia.strftime(
-                "%Y-%m-%d %H:%M:%S"), req_result[1], req_result[2]
+                "%d-%m-%Y %H:%M:%S"), req_result[1], req_result[2]
         ),
     )
     logging.info("[*] {} requested for a status update!".format(usname))
@@ -176,8 +176,8 @@ def broadcast(req_result):
     
     for i in range(0, (total)):
         try:
-            pp = "[{}]:<b>Latest update from SSC </b><code>{}</code>".format(
-                timeIndia.strftime("%Y-%m-%d %H:%M:%S"),
+            pp = "[{}]:<b>Latest update from SSC: </b><code>{}</code>".format(
+                timeIndia.strftime("%d-%m-%Y %H:%M:%S"),
                 req_result[1],
             )
             send_status = sendtelegram(1, MY_CHANNEL, file_id, pp)
