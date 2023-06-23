@@ -27,6 +27,7 @@ from os import path
 from bot.hf.request import request_time
 from bot.mongodb.users import user_list, remove_client_from_db
 from datetime import datetime
+import pytz
 from pyrogram.errors.exceptions import UserIsBlocked, ChatWriteForbidden
 from bot import logging
 import subprocess
@@ -143,13 +144,17 @@ def check_status(user_id, usname):
         "Sending an alert in 5 seconds!\nPlease minimize the app if you want to check notification settings.",
     )
     req_result = request_time(Client)
+    
+    Tz = pytz.timezone("Asia/Calcutta") 
+    timeIndia = datetime.now(Tz)
+    
     time.sleep(4)
     sendtelegram(
         2,
         user_id,
         "_",
         "Last Check- [{}]\n<b>Last Notice:</b> <code>{}</code>\n{}".format(
-            datetime.now().strftime(
+            timeIndia.strftime(
                 "%Y-%m-%d %H:%M:%S"), req_result[1], req_result[2]
         ),
     )
@@ -165,7 +170,7 @@ def broadcast(req_result):
     failed_users = []
     for i in range(0, (total)):
         try:
-            pp = "[{}]:<b>Latest update from SSC website</b><code>{}</code>\n{}".format(
+            pp = "[{}]:<b>Latest update from SSC </b><code>{}</code>\n{}".format(
                 datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 req_result[1],
                 req_result[2],
