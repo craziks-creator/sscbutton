@@ -176,10 +176,9 @@ def broadcast(req_result):
     
     for i in range(0, (total)):
         try:
-            pp = "[{}]:<b>Latest update from SSC </b><code>{}</code>\n{}".format(
+            pp = "[{}]:<b>Latest update from SSC </b><code>{}</code>".format(
                 timeIndia.strftime("%Y-%m-%d %H:%M:%S"),
                 req_result[1],
-                req_result[2],
             )
             send_status = sendtelegram(1, MY_CHANNEL, file_id, pp)
             if send_status == 200:
