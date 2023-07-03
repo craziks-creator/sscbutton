@@ -6,6 +6,6 @@ lxml==4.6.2
 bs4>=0.0.1
 requests>=2.25.0
 urllib3>=0.1
-
+flask
 pymongo>=3.11.1
 dnspython==2.0.0
