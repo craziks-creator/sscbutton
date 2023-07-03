@@ -27,8 +27,8 @@ from . import (
     TG_BOT_WORKERS
 )
 import threading
-
-
+from keep_alive import keep_alive
+keep_alive()
 class Bot(Client):
     """ modded client for DTU-Alert-Bot """
 
