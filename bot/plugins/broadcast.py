@@ -155,7 +155,7 @@ def check_status(user_id, usname):
         2,
         user_id,
         "_",
-        "Last Check- [{}]\n<b>Last Notice:</b> <code>{}</code>\n{}".format(
+        "Last Check- [{}]\n<b>Last Notice:</b> <code>{}</code>[  InlineKeyboardButton(text="inline", url=ssc.nic.in)    ]\n{}".format(
             timeIndia.strftime(
                 "%d-%m-%Y %H:%M:%S"), req_result[1], req_result[2]
         ),
